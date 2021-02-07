@@ -11,6 +11,7 @@ public enum ETileType
 
 public class TileManager : MonoBehaviour
 {
+    [SerializeField] LogicManager LogicMana;
     [SerializeField] int xCount = 32;
     [SerializeField] int yCount = 32;
     [SerializeField] int MaxResorceCount = 10;
@@ -103,9 +104,17 @@ public class TileManager : MonoBehaviour
                 Tile tileScript = tile.GetComponent<Tile>();
                 tileScript.x = x;
                 tileScript.y = y;
-                tileScript.TMana = this;
+                tileScript.SetManagers(this, LogicMana);
                 AllTiles.Add(tile);
             }
+        }
+    }
+
+    public void ShowAllTiles()
+    {
+        foreach (GameObject g in AllTiles)
+        {
+            g.GetComponent<Tile>().ShowTile();
         }
     }
 
