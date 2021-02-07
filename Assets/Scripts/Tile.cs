@@ -7,15 +7,17 @@ public class Tile : MonoBehaviour
 {
     public int x;
     public int y;
-    public Color TileColor;
     public int TileScore;
-    public ETileType TileType = ETileType.NONE;
     public bool IsHidden = true;
+    public Color TileColor;
+    public ETileType TileType = ETileType.NONE;
     public TileManager TMana;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        // Initialize tiles with its type given
         switch (TileType)
         {
             case ETileType.NONE:
@@ -37,19 +39,7 @@ public class Tile : MonoBehaviour
         }
 
         if (!IsHidden)
-        {
             GetComponent<Image>().color = TileColor;
-        }
-        else
-        {
-            GetComponent<Image>().color = Color.white;
-        }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void ShowTile()
@@ -60,6 +50,7 @@ public class Tile : MonoBehaviour
 
     public void OnTileClicked()
     {
+        // Show the scan area of the tiles 3*3
         TMana.ShowSroundTiles(x - 1, y - 1, 3);
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public enum ETileType
 {
     NONE,
@@ -12,14 +11,12 @@ public enum ETileType
 
 public class TileManager : MonoBehaviour
 {
-    [SerializeField] GameObject TilePrefab;
     [SerializeField] int xCount = 32;
     [SerializeField] int yCount = 32;
     [SerializeField] int MaxResorceCount = 10;
-
+    [SerializeField] GameObject TilePrefab;
     List<GameObject> AllTiles = new List<GameObject>();
 
-    // Start is called before the first frame update
     void Start()
     {
         SpawnTiles();
@@ -28,6 +25,8 @@ public class TileManager : MonoBehaviour
 
     void InitTiles()
     {
+        // Place max resorces on random places of the grip
+        // Change the lowest reource sround tiles
         while (MaxResorceCount > 0)
         {
             int x = Random.Range(0, xCount+1);
@@ -41,6 +40,8 @@ public class TileManager : MonoBehaviour
                 MaxResorceCount--;
             }
         }
+
+        // Change the middle resource sround tiles
         foreach (GameObject g in AllTiles)
         {
             Tile t = g.GetComponent<Tile>();
@@ -73,10 +74,7 @@ public class TileManager : MonoBehaviour
             for (int x = PosX; x < PosX + length; x++)
             {
                 Tile t = FindTile(x, y);
-                if (t)
-                {
-                    t.ShowTile();
-                }
+                if (t) { t.ShowTile(); }
             }
         }
     }
@@ -100,6 +98,7 @@ public class TileManager : MonoBehaviour
         {
             for (int x = 0; x < xCount; x++)
             {
+                // Spawn the tile and set its position and Tile Manager script
                 GameObject tile = Instantiate(TilePrefab, transform);
                 Tile tileScript = tile.GetComponent<Tile>();
                 tileScript.x = x;
@@ -110,9 +109,4 @@ public class TileManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
