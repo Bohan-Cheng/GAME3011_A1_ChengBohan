@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public enum ETileType
 {
     NONE,
@@ -16,6 +17,8 @@ public class TileManager : MonoBehaviour
     [SerializeField] int yCount = 32;
     [SerializeField] int MaxResorceCount = 10;
     [SerializeField] GameObject TilePrefab;
+    [SerializeField] GameObject CollectedTilePrefab;
+    [SerializeField] Transform CollectBinTrans;
     List<GameObject> AllTiles = new List<GameObject>();
 
     void Start()
@@ -118,4 +121,11 @@ public class TileManager : MonoBehaviour
         }
     }
 
+    // Just a optional function to collect a tile in the collect bin
+    public void CollectTile(Color color)
+    {
+        GameObject ct = Instantiate(CollectedTilePrefab, CollectBinTrans);
+        ct.GetComponent<Image>().color = color;
+        ct.transform.Rotate(Vector3.forward, Random.Range(0, 361));
+    }
 }

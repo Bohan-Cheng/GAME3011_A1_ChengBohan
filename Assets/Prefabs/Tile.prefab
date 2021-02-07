@@ -96,7 +96,6 @@ MonoBehaviour:
   IsHidden: 1
   TileColor: {r: 0, g: 0, b: 0, a: 0}
   TileType: 0
-  TMana: {fileID: 0}
 --- !u!114 &2161602504823081027
 MonoBehaviour:
   m_ObjectHideFlags: 0

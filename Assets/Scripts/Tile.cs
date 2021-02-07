@@ -32,15 +32,15 @@ public class Tile : MonoBehaviour
                 TileColor = Color.black;
                 break;
             case ETileType.LOW:
-                TileScore = 100;
+                TileScore = 375;
                 TileColor = Color.green;
                 break;
             case ETileType.MID:
-                TileScore = 800;
+                TileScore = 750;
                 TileColor = Color.yellow;
                 break;
             case ETileType.HIGH:
-                TileScore = 2000;
+                TileScore = 1500;
                 TileColor = Color.red;
                 break;
         }
@@ -72,6 +72,7 @@ public class Tile : MonoBehaviour
             ShowTile();
             LogicMana.ExtractCount--;
             LogicMana.Score += TileScore;
+            if (TileType != 0) {TileMana.CollectTile(TileColor);}   // Optional effect
             if (TileType > 0)
             {
                 TileType -= 1;
